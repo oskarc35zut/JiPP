@@ -106,10 +106,77 @@ int main() {
 	if(d>0)
 	{
 		if(d<=25)
-		{
+		{	
+			//czesc rzeczywista
+			pd=d/2;
 			
+				//liczenie pd
+                if((d/pd-pd>0.1) || (d/pd-pd<-0.1)){ pd=(d/pd+pd)/2;
+                if((d/pd-pd>0.1) || (d/pd-pd<-0.1)){ pd=(d/pd+pd)/2;
+                if((d/pd-pd>0.1) || (d/pd-pd<-0.1)){ pd=(d/pd+pd)/2;
+                if((d/pd-pd>0.1) || (d/pd-pd<-0.1)){ pd=(d/pd+pd)/2;
+                if((d/pd-pd>0.1) || (d/pd-pd<-0.1)){ pd=(d/pd+pd)/2;
+                if((d/pd-pd>0.1) || (d/pd-pd<-0.1)){ pd=(d/pd+pd)/2;
+				}}}}}}
+                
+                x1v=(-b-d)/(2*a);
+                x2v=(-b+d)/(2*a);
+                
+                printf("/n x1v = %f",x1v);
+                printf("/n x2v = %f",x2v);
 		}
 	}
+	else if(d>25)
+    	printf("Nie liczymy pierwiastka wiekszego niz 25\n");
+    else if (d == 0){
+    	
+        x1v=-b/(2*a);
+        printf("x1v = %f\n",x1v);
+        }
+    else if ((d<0) && (d<=-25))
+        {
+        	//czesc urojona
+            x1v=-b/(2*a);
+            x2v=x1v;
+            printf("x1v = %f\n",x1v);
+            printf("x2v = %f\n",x2v);
+            d=-d;
+            pd=d/2;
+            	
+            	//liczenie pd
+            	if((d/pd-pd>0.1) || (d/pd-pd<-0.1)){pd=(d/pd+pd)/2;
+                if((d/pd-pd>0.1) || (d/pd-pd<-0.1)){pd=(d/pd+pd)/2;
+            	if((d/pd-pd>0.1) || (d/pd-pd<-0.1)){pd=(d/pd+pd)/2;
+                if((d/pd-pd>0.1) || (d/pd-pd<-0.1)){pd=(d/pd+pd)/2;
+                if((d/pd-pd>0.1) || (d/pd-pd<-0.1)){pd=(d/pd+pd)/2;
+                if((d/pd-pd>0.1) || (d/pd-pd<-0.1)){pd=(d/pd+pd)/2;
+				}}}}}}
+				
+                x1u= -d/(2*a);
+                x2u=-x1u;
+                if(x1u<0)
+                {
+                printf("z1 = %f %f*i\n",x1v,x1u);
+                printf("z2 = %f + %f*i\n",x1v,x1u);
+                }
+                else
+                {
+                printf("z1 = %f + %f*i\n",x1v,x1u);
+                printf("z2 = %f - %f*i\n",x1v,x1u);
+                }
+            }
+            }
+            }
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	
