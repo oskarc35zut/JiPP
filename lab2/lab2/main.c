@@ -13,6 +13,7 @@ void odejmij(float d, float *x1r, float *x2r, float *x1u, float *x2u, float *rr,
 void pomnoz(float d, float *x1r, float *x2r, float *x1u, float *x2u, float *ilr, float *ilu);
 void podziel(float d, float *x1r, float *x2r, float *x1u, float *x2u, float *ilr, float *ilu);
 void formatuj_zesp(float x1r, float x1u);
+void wyswietl_wynik(int a, int b, int c, float d, float x1r, float x2r, float x1u, float x2u, float sr, float su, float rr, float ru, float ilr, float ilu, float irr, float iru);
 
 #pragma endregion
 
@@ -28,17 +29,14 @@ int main() {
 	formatuj_rownanie(a, b, c);
 
 	d = oblicz_d(a, b, c);
-	printf("\nd= %f\n", d);
 
 	oblicz_pierwiastki(a, b, c, &x1r, &x2r, &x1u, &x2u);
+	dodaj(d, &x1r, &x2r, &x1u, &x2u, &sr, &su);
+	odejmij(d, &x1r, &x2r, &x1u, &x2u, &rr, &ru);
+	pomnoz(d, &x1r, &x2r, &x1u, &x2u, &ilr, &ilu);
+	podziel(d, &x1r, &x2r, &x1u, &x2u, &irr, &iru);
 
-	printf("\n x1v= %f\n", x1r);
-	printf("\n x2v= %f\n", x2r);
-
-	printf("\n x1u= %f\n", x1u);
-	printf("\n x2u= %f\n", x2u);
-
-
+	wyswietl_wynik(a, b, c, d, x1r, x2r, x1u, x2u, sr, su, rr, ru, ilr, ilu, irr, iru);
 
 	scanf_s("%d", &c);
 	return 0;
@@ -175,17 +173,17 @@ void pomnoz(float d, float *x1r, float *x2r, float *x1u, float *x2u, float *ilr,
 	}
 }
 
-void podziel(float d, float *x1r, float *x2r, float *x1u, float *x2u, float *ilr, float *ilu) {
+void podziel(float d, float *x1r, float *x2r, float *x1u, float *x2u, float *irr, float *iru) {
 	if (d>0)
 	{
-		*ilr = *x1r / *x2r;
+		*irr = *x1r / *x2r;
 	}
 	else if (d<0)
 	{
-		*ilr = (*x1r * *x2r + *x1u * *x2u) / (*x2r * *x2r) + (*x2u * *x2u);
+		*irr = (*x1r * *x2r + *x1u * *x2u) / (*x2r * *x2r) + (*x2u * *x2u);
 		if (*x2r != 0)
 		{	
-			*ilu = (*x1u * *x2r - *x1r * *x2u) / (*x2r * *x2r) + (*x2u * *x2u);
+			*iru = (*x1u * *x2r - *x1r * *x2u) / (*x2r * *x2r) + (*x2u * *x2u);
 		}
 		else 
 		{
@@ -205,4 +203,33 @@ void formatuj_zesp(float x1r, float x1u) {
 		printf("\n z1 = %f +%f*i", x1r, x1u);
 		printf("\n z2 = %f %f*i", x1r, x1u);
 	}
+}
+
+void wyswietl_wynik(int a, int b, int c, float d, float x1r, float x2r, float x1u, float x2u, float sr, float su, float rr, float ru, float ilr, float ilu, float irr, float iru) {
+	printf("\n a= %d  b= %d  c= %d\n", a, b, c);
+
+	formatuj_rownanie( a, b, c);
+
+	printf("\n d= %f\n", d);
+	printf("\n pd= %f", sqrt(d));
+
+	printf("\n x1v= %f\n", x1r);
+	printf("\n x2v= %f\n", x2r);
+
+	printf("\n x1u= %f\n", x1u);
+	printf("\n x2u= %f\n", x2u);
+
+
+	printf("\n sr= %f\n", sr);
+	printf("\n su= %f\n", su);
+
+
+	printf("\n rr= %f\n", rr);
+	printf("\n ru= %f\n", ru);
+
+	printf("\n ilr= %f\n", ilr);
+	printf("\n ilu= %f\n", ilu);
+
+	printf("\n irr= %f\n", irr);
+	printf("\n iru= %f\n", iru);
 }
