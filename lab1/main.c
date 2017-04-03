@@ -12,9 +12,9 @@ int main() {
 	printf("Podaj a b c\n");
 	scanf ("%d %d %d",&a, &b, &c);
 	
-	//a = 4;
-	///b = 5;
-	//c = 18;
+	a = 1;
+	b = 1;
+	c = 1;
 	
 	printf("a= %d  b= %d  c= %d\n", a,b,c);
 	
@@ -96,89 +96,111 @@ int main() {
 	
 	printf("\n\n==== 3 =====\n\n");
 	//========================================================================================================================
-	
 	if(a!=0)
-	{
-		d=b*b-(4*a*c);
-		printf("d= %f", d);
-	}
-	
-	if(d>0)
-	{
-		if(d<=25)
-		{	
-			//czesc rzeczywista
-			pd=d/2;
-			
-				//liczenie pd
-                if((d/pd-pd>0.1) || (d/pd-pd<-0.1)){ pd=(d/pd+pd)/2;
-                if((d/pd-pd>0.1) || (d/pd-pd<-0.1)){ pd=(d/pd+pd)/2;
-                if((d/pd-pd>0.1) || (d/pd-pd<-0.1)){ pd=(d/pd+pd)/2;
-                if((d/pd-pd>0.1) || (d/pd-pd<-0.1)){ pd=(d/pd+pd)/2;
-                if((d/pd-pd>0.1) || (d/pd-pd<-0.1)){ pd=(d/pd+pd)/2;
-                if((d/pd-pd>0.1) || (d/pd-pd<-0.1)){ pd=(d/pd+pd)/2;
-				}}}}}}
-                
+    {
+        d=(b*b)-((4*a)*c);
+        printf("\nd= %f\n",d);
+        
+        if(d>0)
+        {
+            if(d<=25)
+            {
+            	//obliczanie pierwiastka z d
+                pd=d/2;
+                if((d/pd-pd>0.1) || (d/pd-pd<-0.1)) {pd=(d/pd+pd)/2;
+                if((d/pd-pd>0.1) || (d/pd-pd<-0.1)) {pd=(d/pd+pd)/2;
+                if((d/pd-pd>0.1) || (d/pd-pd<-0.1)) {pd=(d/pd+pd)/2;
+                if((d/pd-pd>0.1) || (d/pd-pd<-0.1)) {pd=(d/pd+pd)/2;
+                if((d/pd-pd>0.1) || (d/pd-pd<-0.1)) {pd=(d/pd+pd)/2;
+                if((d/pd-pd>0.1) || (d/pd-pd<-0.1)) {pd=(d/pd+pd)/2;
+                if((d/pd-pd>0.1) || (d/pd-pd<-0.1)) {pd=(d/pd+pd)/2;// dokladnosc na poziomie 0.2
+					}}}}}}}
+					
                 x1v=(-b-d)/(2*a);
                 x2v=(-b+d)/(2*a);
                 
-                printf("/n x1v = %f",x1v);
-                printf("/n x2v = %f",x2v);
-		}
-	}
-	else if(d>25)
-    	printf("Nie liczymy pierwiastka wiekszego niz 25\n");
-    else if (d == 0){
-    	
-        x1v=-b/(2*a);
-        printf("x1v = %f\n",x1v);
+                printf("\n x1v= %f\n",x1v);
+                printf("\n x2v= %f\n",x2v);
+            }
+            
+            
+            else if(d>25)
+                printf("Nie liczymy pierwiastka wiekszego od 25\n");
         }
-    else if ((d<0) && (d<=-25))
-        {
-        	//czesc urojona
-            x1v=-b/(2*a);
-            x2v=x1v;
-            printf("x1v = %f\n",x1v);
-            printf("x2v = %f\n",x2v);
-            d=-d;
-            pd=d/2;
-            	
-            	//liczenie pd
-            	if((d/pd-pd>0.1) || (d/pd-pd<-0.1)){pd=(d/pd+pd)/2;
-                if((d/pd-pd>0.1) || (d/pd-pd<-0.1)){pd=(d/pd+pd)/2;
-            	if((d/pd-pd>0.1) || (d/pd-pd<-0.1)){pd=(d/pd+pd)/2;
-                if((d/pd-pd>0.1) || (d/pd-pd<-0.1)){pd=(d/pd+pd)/2;
-                if((d/pd-pd>0.1) || (d/pd-pd<-0.1)){pd=(d/pd+pd)/2;
-                if((d/pd-pd>0.1) || (d/pd-pd<-0.1)){pd=(d/pd+pd)/2;
-				}}}}}}
+        
+        
+            else if (d == 0)
+            {
+                x1v=(((float)b)/(2*((float)a)))*(-1);
+                printf("\n x1v = %f",x1v);
+            }
+            
+            
+            else if ((d<0) && (d>=-25))
+            {
+                x1v=((-1)*((float)b))/(2*((float)a));
+                x2v=x1v;
+                
+                printf("\nx1v = %f\n",x1v);
+                printf("\nx2v = %f\n",x2v);
+                
+                d=-d;
+                
+                //obliczanie pierwiastka z d
+                pd=d/2;
+                if((d/pd-pd>0.1) || (d/pd-pd<-0.1)) {pd=(d/pd+pd)/2;
+                if((d/pd-pd>0.1) || (d/pd-pd<-0.1)) {pd=(d/pd+pd)/2;
+                if((d/pd-pd>0.1) || (d/pd-pd<-0.1)) {pd=(d/pd+pd)/2;
+                if((d/pd-pd>0.1) || (d/pd-pd<-0.1)) {pd=(d/pd+pd)/2;
+                if((d/pd-pd>0.1) || (d/pd-pd<-0.1)) {pd=(d/pd+pd)/2;
+                if((d/pd-pd>0.1) || (d/pd-pd<-0.1)) {pd=(d/pd+pd)/2;
+                if((d/pd-pd>0.1) || (d/pd-pd<-0.1)) {pd=(d/pd+pd)/2;// dokladnosc na poziomie 0.2
+				}}}}}}}
 				
-                x1u= -d/(2*a);
+                x1u=(-pd)/(2*a);
                 x2u=-x1u;
+                
                 if(x1u<0)
                 {
-                printf("z1 = %f %f*i\n",x1v,x1u);
-                printf("z2 = %f + %f*i\n",x1v,x1u);
+                printf("\n z1 = %f %f*i",x1v,x1u);
+                printf("\n z2 = %f +%f*i",x2v,x2u);
                 }
                 else
                 {
-                printf("z1 = %f + %f*i\n",x1v,x1u);
-                printf("z2 = %f - %f*i\n",x1v,x1u);
+                printf("\n z1 = %f +%f*i",x1v,x1u);
+                printf("\n z2 = %f %f*i",x2v,x2u);
                 }
             }
+    }
+    
+    
+    
+    
+    
+            else if(a == 0)
+            {
+    printf("\n\n==== 4 =====\n\n");
+	//========================================================================================================================
+                if(b != 0)
+                {
+                    x1v=((float)c/(float)b)*(-1);
+                    printf("\n x1v = %f",x1v);
+                }
+                else if((b == 0) && (c != 0))
+                {
+                    printf("Rownanie jest sprzeczne\n");
+                }
+                else if((b == 0) && (c == 0))
+                {
+                    printf("Rownanie jest tozsamosciowe\n");
+                }
             }
-            }
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	return 0;
+    getchar();
+    return 0;
 }
+
+
+
+
+
+
