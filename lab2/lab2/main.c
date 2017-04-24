@@ -45,7 +45,14 @@ int main() {
 
 	wyswietl_wynik(a, b, c, d, x1r, x2r, x1u, x2u, sr, su, rr, ru, ilr, ilu, irr, iru);
 
-	printf("\nDokladnosc pierwiastka wynosi: %f", pd_lab1(d) - sqrtf(fabsf(d)));
+	if (pd_lab1(d) > sqrtf(fabsf(d)))
+	{
+		printf("\nDokladnosc pierwiastka wynosi: %f", pd_lab1(d) - sqrtf(fabsf(d)));
+	}
+	else
+	{
+		printf("\nDokladnosc pierwiastka wynosi: %f", sqrtf(fabsf(d))- pd_lab1(d));
+	}
 
 	scanf_s("%d", &c);
 	return 0;
@@ -254,7 +261,7 @@ void formatuj_zesp(float r, float u) {
 
 	if (r>0 || r<0)
 	{
-		printf("%f", r);
+		printf("%0f", r);
 	}
 	else
 	{
