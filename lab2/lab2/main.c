@@ -59,6 +59,9 @@ void podaj_dane(int* a, int* b, int* c) {
 
 void formatuj_rownanie(int a, int b, int c) {
 	//========================================================================================================================
+
+
+
 	if (a>1 || a<0)
 	{
 		printf("%d*x*x", a);
@@ -247,81 +250,53 @@ void podziel(float d, float *x1r, float *x2r, float *x1u, float *x2u, float *irr
 
 void formatuj_zesp(float r, float u) {
 
-	if (r == 0 && u == 0)
+	float c = 3;
+
+	if (r>0 || r<0)
 	{
-		printf(" 0");
-		return;
+		printf("%f", r);
+	}
+	else
+	{
+		if (r == 1)
+		{
+			printf("1");
+		}
+		else
+		{
+			if (r != 0)
+			{
+				printf("\n######\nformatuj_zesp blad_a\n");
+			}
+		}
 	}
 
-	if (r != 0 && u == 0) {
-		if (!r) {
-			printf(" 0");
+	if (u>0)
+	{
+		printf("+%fi", u);
+	}
+	else
+	{
+		if (u<0)
+		{
+			printf("%fi", u);
 		}
-		else if (r>0) {
-			printf(" %f", u);
+		else
+		{
+			if (u == 1)
+			{
+				printf("+i");
+			}
+			else
+			{
+				if (u != 0)
+				{
+					printf("\n######\nformatuj_zesp blad_b\n");
+				}
+			}
 		}
-		else if (r<0) {
-			printf(" -%f", -u);
-		}
-		return;
 	}
 
-	if (r == 0 && u != 0) {
-		if (!u) {
-			printf(" + 0i");
-		}
-		else if (u == 1 && r != 0) {
-			printf(" + i");
-		}
-		else if (u == 1 && r == 0) {
-			printf(" i");
-		}
-		else if (u < 0 && r != 0) {
-			printf(" - %f*i", -r);
-		}
-		else if (u < 0 && r == 0) {
-			printf(" %f*i", r);
-		}
-		else if (u > 0 && r != 0) {
-			printf(" + %f*i ", r);
-		}
-		else if (u > 0 && r == 0) {
-			printf(" %f*i", u);
-		}
-		return;
-	}
-
-	if (!r) {
-		printf(" 0");
-	}
-	else if (r>0) {
-		printf(" %f", r);
-	}
-	else if (r<0) {
-		printf(" -%f", -r);
-	}
-	
-	if (!u) {
-		printf(" + 0i");
-	}
-	else if (u == 1 && r != 0) {
-		printf(" + i");
-	}
-	else if (u == 1 && r == 0) {
-		printf(" i");
-	}
-	else if (u < 0 && r != 0) {
-		printf(" - %f*i", -r);
-	}
-	else if (u < 0 && r == 0) {
-		printf(" %f*i", r);
-	}
-	else if (u > 0 && r != 0) {
-		printf(" + %f*i ", r);
-	}
-	else if (u > 0 && r == 0) {
-		printf(" %f*i", u);
-	}
 }
 
 void wyswietl_wynik(int a, int b, int c, float d, float x1r, float x2r, float x1u, float x2u, float sr, float su, float rr, float ru, float ilr, float ilu, float irr, float iru) {
