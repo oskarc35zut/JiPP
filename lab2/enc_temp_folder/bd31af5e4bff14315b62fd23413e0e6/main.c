@@ -45,7 +45,7 @@ int main() {
 
 	wyswietl_wynik(a, b, c, d, x1r, x2r, x1u, x2u, sr, su, rr, ru, ilr, ilu, irr, iru);
 
-	printf("\nDokladnosc pierwiastka wynosi: %f", pd_lab1(d) - sqrtf(fabsf(d)));
+	printf("\nDokladnosc pierwiastka wynosi: %f", pd_lab1(d) - sqrtf(d));
 
 	scanf_s("%d", &c);
 	return 0;
