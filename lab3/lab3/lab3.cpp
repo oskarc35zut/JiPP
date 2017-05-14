@@ -26,7 +26,7 @@ public:
 		dane_we = new int[3];
 		podaj_dane();
 
-		formatuj_rownanie();
+		
 		oblicz_pierwiastki();
 		oblicz_d();
 		dodaj();
@@ -41,16 +41,22 @@ public:
 		delete[] dane_we;
 	}
 
+private:
+
 #pragma region Metody
 
 	void podaj_dane()
 	{
-		printf("Podaj a: ");
-		scanf("%d", &dane_we[0]);
-		printf("Podaj b: ");
-		scanf("%d", &dane_we[1]);
-		printf("Podaj c: ");
-		scanf("%d", &dane_we[2]);
+		printf("Podaj a b c\n");
+		scanf_s("%d %d %d", &dane_we[0], &dane_we[1], &dane_we[2]);
+
+
+		//printf("Podaj a: ");
+		//scanf("%d", &dane_we[0]);
+		//printf("Podaj b: ");
+		//scanf("%d", &dane_we[1]);
+		//printf("Podaj c: ");
+		//scanf("%d", &dane_we[2]);
 	}
 
 	void formatuj_rownanie() {
@@ -134,6 +140,8 @@ public:
 	float mnsqrt()
 	{
 		pd = 0;
+		
+		d = fabsf(d);
 
 		if (d > 0)
 		{
@@ -266,6 +274,9 @@ public:
 
 	void wyswietl_wynik()
 	{
+		printf("\n\n");
+		formatuj_rownanie();
+
 		if (dane_we[0] == 0)
 		{
 			if (dane_we[1] != 0)
@@ -315,13 +326,16 @@ public:
 			printf("x1v = %f\n", z->x1r);
 		}
 			
-
-
 		mnsqrt();
-		oblicz_d();
-		d = sqrt(fabs(d));
-		printf("\nRoznica w SQRT =%f\n", fabs(pd - d));
 
+		if (pd > sqrtf(fabsf(d)))
+		{
+			printf("\nDokladnosc pierwiastka wynosi: %f", pd - sqrtf(fabsf(d)));
+		}
+		else
+		{
+			printf("\nDokladnosc pierwiastka wynosi: %f", sqrtf(fabsf(d)) - pd);
+		}
 	}
 
 	void modul()
@@ -335,5 +349,6 @@ public:
 int main()
 {
 	Rownanie* test = new Rownanie();
+	delete test;
 	return 0;
 }
