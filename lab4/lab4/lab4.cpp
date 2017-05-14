@@ -3,6 +3,9 @@
 #include <complex>
 #include <vector>
 #include <iomanip>
+#include "stdlib.h"
+#include <iostream>
+
 
 using namespace std;
 
@@ -49,10 +52,9 @@ public:
 
 		Vzesp->push_back((complex<float>(5, 7)));
 		
-
-		//Vzesp->push_back();
-
+		*zesp = Vzesp->at(0);
 		
+		//Vzesp->push_back();
 
 		podaj_dane();
 		oblicz_pierwiastki();
