@@ -1,5 +1,10 @@
 #include "stdafx.h"
 #include <math.h>
+#include <complex>
+#include <vector>
+#include <iomanip>
+
+using namespace std;
 
 struct urojona
 {
@@ -15,6 +20,11 @@ struct zespolona
 class Rownanie
 {
 private:
+
+	vector<int> *dane;
+	complex<float> *zesp;
+	vector<complex<float>> *Vzesp;
+
 	zespolona* z;
 	int* dane_we;
 	float d, pd, md;
@@ -24,9 +34,27 @@ public:
 	{
 		z = new zespolona;
 		dane_we = new int[3];
-		podaj_dane();
 
 		
+		dane = new vector<int>;
+		zesp = new complex<float>;
+		Vzesp = new vector<complex<float>>;
+
+
+		complex<float> *a;
+		//a = ;
+		
+		//a->real(19);
+		//a->imag(2);
+
+		Vzesp->push_back((complex<float>(5, 7)));
+		
+
+		//Vzesp->push_back();
+
+		
+
+		podaj_dane();
 		oblicz_pierwiastki();
 		oblicz_d();
 		dodaj();
@@ -49,14 +77,6 @@ private:
 	{
 		printf("Podaj a b c\n");
 		scanf_s("%d %d %d", &dane_we[0], &dane_we[1], &dane_we[2]);
-
-
-		//printf("Podaj a: ");
-		//scanf("%d", &dane_we[0]);
-		//printf("Podaj b: ");
-		//scanf("%d", &dane_we[1]);
-		//printf("Podaj c: ");
-		//scanf("%d", &dane_we[2]);
 	}
 
 	void formatuj_rownanie() {
@@ -140,7 +160,7 @@ private:
 	float mnsqrt()
 	{
 		pd = 0;
-		
+
 		d = fabsf(d);
 
 		if (d > 0)
@@ -327,7 +347,7 @@ private:
 		{
 			printf("x1v = %f\n", z->x1r);
 		}
-			
+
 		mnsqrt();
 
 		if (pd > sqrtf(fabsf(d)))
