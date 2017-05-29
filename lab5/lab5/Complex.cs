@@ -4,19 +4,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Complex
+namespace test
 {
     public class Complex<T> where T : struct
     {
 
-        public T real, imag;
+        public T Real, Imaginary;
         public Complex()
         {
         }
         public Complex(T i, T j)
         {
-            real = i;
-            imag = j;
+            Real = i;
+            Imaginary = j;
         }
 
 
@@ -24,24 +24,24 @@ namespace Complex
 
         public static Complex<T> operator +(Complex<T> i, Complex<T> j)
         {
-            return new Complex<T>((dynamic)i.real+ (dynamic)j.real, (dynamic)i.imag + (dynamic)j.imag);
+            return new Complex<T>((dynamic)i.Real+ (dynamic)j.Real, (dynamic)i.Imaginary + (dynamic)j.Imaginary);
         }
 
         public static Complex<T> operator -(Complex<T> i, Complex<T> j)
         {
-            return new Complex<T>((dynamic)i.real - (dynamic)j.real, (dynamic)i.imag - (dynamic)j.imag);
+            return new Complex<T>((dynamic)i.Real - (dynamic)j.Real, (dynamic)i.Imaginary - (dynamic)j.Imaginary);
         }
 
         public static Complex<T> operator *(Complex<T> i, Complex<T> j)
         {
-            return new Complex<T>((dynamic)i.real * (dynamic)j.real, (dynamic)i.imag * (dynamic)j.imag);
+            return new Complex<T>((dynamic)i.Real * (dynamic)j.Real, (dynamic)i.Imaginary * (dynamic)j.Imaginary);
         }
 
         public static Complex<T> operator /(Complex<T> i, Complex<T> j)
         {
             try
             {
-                return new Complex<T>((dynamic)i.real / (dynamic)j.real, (dynamic)i.imag / (dynamic)j.imag);
+                return new Complex<T>((dynamic)i.Real / (dynamic)j.Real, (dynamic)i.Imaginary / (dynamic)j.Imaginary);
             }
             catch (Exception)
             {

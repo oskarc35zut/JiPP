@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Complex;
 using System.Text;
+using System.Numerics;
 using static System.Console;
 using static System.Math;
 
@@ -11,20 +11,37 @@ namespace lab5
 {
     interface IRownanie
     {
+        
+
         void podaj_dane();
         void wyswietl_wynik();
         void formatuj_rownanie();
     }
-    class Rownanie : IRownanie
+
+    abstract class ARownanie : IRownanie
     {
-        List<int> dane_we;
-        List<Complex<float>> zespolona;
+        protected float d, pd, md;
 
-        float d, pd, md;
+        protected List<int> dane_we;
+        protected List<Complex> zespolona;
 
+        public abstract void podaj_dane();
+        public abstract void wyswietl_wynik();
+        public abstract void formatuj_rownanie();
+
+
+        protected virtual float mnsqrt()
+        {
+            return (float)Sqrt(d);
+        }
+    }
+
+
+    class Rownanie : ARownanie, IRownanie
+    {
         public Rownanie()
         {
-            zespolona = new List<Complex<float>>();
+            zespolona = new List<Complex>();
             dane_we = new List<int>();
 
             for (int i = 0; i < 3; i++)
@@ -34,7 +51,7 @@ namespace lab5
 
             for (int i = 0; i < 6; i++)
             {
-                zespolona.Add(new Complex<float>());
+                zespolona.Add(new Complex());
             }
 
 
@@ -49,7 +66,7 @@ namespace lab5
             wyswietl_wynik();
         }
 
-        public void podaj_dane()
+        public override void podaj_dane()
         {
             char[] tmp = new char[] { 'a', 'b', 'c' };
             for (int i = 0; i < tmp.Length; i++)
@@ -69,7 +86,7 @@ namespace lab5
             tmp = null;
         }
 
-        public void formatuj_rownanie()
+        public override void formatuj_rownanie()
         {
 
             if (dane_we[0] > 1 || dane_we[0] < 0)
@@ -143,13 +160,13 @@ namespace lab5
             Write(" = 0\n");
         }
 
-        void oblicz_d()
+        protected void oblicz_d()
         {
             d = (float)(Pow(dane_we[1], 2) - ((4 * dane_we[0]) * dane_we[2]));
 
         }
 
-        float mnsqrt()
+        protected new float mnsqrt()
         {
             pd = 0;
 
@@ -191,75 +208,74 @@ namespace lab5
             return pd;
         }
 
-        void oblicz_pierwiastki()
+       protected void oblicz_pierwiastki()
         {
-
             oblicz_d();
             if (d > 0)
             {
-                zespolona[0].real = (((-(float)dane_we[1] + pd) / (2 * (float)dane_we[0])));
-                zespolona[0].imag = 0;
-
-                zespolona[1].real = (((-(float)dane_we[1] - pd) / (2 * (float)dane_we[0])));
-                zespolona[1].imag = 0;
+                zespolona[0] = new Complex((-(float)dane_we[1] + pd) / (2 * (float)dane_we[0]), 0);
+                
+                zespolona[1] = new Complex((-(float)dane_we[1] - pd) / (2 * (float)dane_we[0]), 0);
             }
             else if (d == 0)
             {
-                zespolona[0].real = (((-(float)dane_we[1] + pd) / (2 * (float)dane_we[0])));
-                zespolona[0].imag = 0;
+                zespolona[0] = new Complex((-(float)dane_we[1] + pd) / (2 * (float)dane_we[0]), 0);
+                zespolona[1] = new Complex((-(float)dane_we[1] + pd) / (2 * (float)dane_we[0]), 0);
             }
             else
             {
                 pd = (float)Sqrt(Abs(d));
 
-                zespolona[0].real = ((-(float)dane_we[1]) / (2 * (float)dane_we[0]));
-                zespolona[1].real = (zespolona[0].real);
+                zespolona[0] = new Complex((-(float)dane_we[1]) / (2 * (float)dane_we[0]), (-pd / 2 / (float)dane_we[0]));
+                zespolona[1] = new Complex((zespolona[0].Real), (-(zespolona[0].Imaginary)));
 
-                zespolona[0].imag = (-pd / 2 / (float)dane_we[0]);
-                zespolona[1].imag = (-(zespolona[0].imag));
             }
-
         }
 
-        void dodaj()
+        private void dodaj()
         {
 
             zespolona[2] = zespolona[0] + zespolona[1];
 
         }
 
-        void odejmij()
+        private void odejmij()
         {
 
             zespolona[3] = zespolona[0] - zespolona[1];
 
         }
 
-        void pomnoz()
+        private void pomnoz()
         {
 
             zespolona[4] = zespolona[0] * zespolona[1];
 
         }
 
-        void podziel()
+        private void podziel()
         {
 
             zespolona[5] = zespolona[0] / zespolona[1];
 
         }
 
-        void formatuj_zesp()
+        public void formatuj_zesp()
         {
-            for (int i = 0; i < 6; i++)
+            for (int i = 0; i < zespolona.Count; i++)
             {
-                if (zespolona[i].imag >= i) Write("Z = {0}+{0}*i\n", zespolona[i].real, zespolona[i].imag);
-                else Write("Z = {0}{0}*i\n", zespolona[i].real, zespolona[i].imag);
+               if (zespolona[i].Imaginary >= i) Write("Z = {0}+{1}*i\n", zespolona[i].Real, zespolona[i].Imaginary);
+               else Write("Z = {0}{1}*i\n", zespolona[i].Real, zespolona[i].Imaginary);
+            }
+
+            for (int i = zespolona.Count - 1; zespolona.Count > 0; i--)
+            {
+                zespolona.Remove(zespolona[i]);
             }
         }
 
-        public void wyswietl_wynik()
-        {
+        public override void wyswietl_wynik()
+        { 
             Write("\n\n");
             formatuj_rownanie();
 
@@ -267,7 +283,7 @@ namespace lab5
             {
                 if (dane_we[1] != 0)
                 {
-                    Write("\nx1v = {0}\n", zespolona[0].real);
+                    Write("\nx1v = {0}\n", zespolona[0].Real);
                 }
                 else if ((dane_we[1] == 0) && (dane_we[2] != 0))
                 {
@@ -280,39 +296,45 @@ namespace lab5
             }
             else if (d > 0)
             {
-                Write("\nx1v = {0}\n", zespolona[0].real);
-                Write("x2v = {0}\n", zespolona[1].real);
-                Write("sr = {0}\n", zespolona[2].real);
-                Write("rr = {0}\n", zespolona[3].real);
-                Write("ilr = {0}\n", zespolona[4].real);
-                Write("irr = {0}\n", zespolona[5].real);
+                Write("\nx1v = {0}\n", zespolona[0].Real);
+                Write("x2v = {0}\n", zespolona[1].Real);
+                Write("sr = {0}\n", zespolona[2].Real);
+                Write("rr = {0}\n", zespolona[3].Real);
+                Write("ilr = {0}\n", zespolona[4].Real);
+                Write("irr = {0}\n", zespolona[5].Real);
             }
             else if (d < 0)
             {
-                Write("\nx1v = {0}\n", zespolona[0].real);
-                Write("x2v = {0}\n", zespolona[1].real);
-                Write("x1u = {0}\n", zespolona[0].imag);
-                Write("x2u = {0}\n", zespolona[1].imag);
-                Write("sr = {0}\n", zespolona[2].real);
-                Write("su = {0}\n", zespolona[2].imag);
-                Write("rr = {0}\n", zespolona[3].real);
-                Write("ru = {0}\n", zespolona[3].imag);
-                Write("ilr = {0}\n", zespolona[4].real);
-                Write("ilu = {0}\n", zespolona[4].imag);
-                Write("irr = {0}\n", zespolona[5].real);
-                Write("iru = {0}\n", zespolona[5].imag);
-
-                formatuj_zesp();
+                Write("\nx1v = {0}\n", zespolona[0].Real);
+                Write("x2v = {0}\n", zespolona[1].Real);
+                Write("x1u = {0}\n", zespolona[0].Imaginary);
+                Write("x2u = {0}\n", zespolona[1].Imaginary);
+                Write("sr = {0}\n", zespolona[2].Real);
+                Write("su = {0}\n", zespolona[2].Imaginary);
+                Write("rr = {0}\n", zespolona[3].Real);
+                Write("ru = {0}\n", zespolona[3].Imaginary);
+                Write("ilr = {0}\n", zespolona[4].Real);
+                Write("ilu = {0}\n", zespolona[4].Imaginary);
+                Write("irr = {0}\n", zespolona[5].Real);
+                Write("iru = {0}\n", zespolona[5].Imaginary);
 
                 modul();
+                formatuj_zesp();
+
+                
                 Write("\nmod = {0}\n", md);
             }
             else if (d == 0)
             {
-                Write("x1v = {0}\n", zespolona[0].real);
+                Write("x1v = {0}\n", zespolona[0].Real);
             }
 
-            mnsqrt();
+
+
+
+
+            base.mnsqrt();
+            this.mnsqrt();
 
             if (pd > Sqrt(Abs(d)))
             {
@@ -327,7 +349,7 @@ namespace lab5
         void modul()
         {
             int j = 0;
-            md = (float)Sqrt(Pow(zespolona[j].real, 2) + Pow(zespolona[j].imag, 2));
+            md = (float)Sqrt(Pow(zespolona[j].Real, 2) + Pow(zespolona[j].Imaginary, 2));
         }
     }
 
@@ -341,7 +363,7 @@ namespace lab5
         {
             Rownanie test = new Rownanie();
 
-            WriteLine("\n# KONIEC #");
+            WriteLine("\n\n\n# KONIEC #");
             Console.ReadKey();
         }
     }
